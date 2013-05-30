@@ -16,7 +16,24 @@ public class ApiServlet extends HttpServlet{
 	   @Override
 	    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 	            throws ServletException, IOException {
-	        resp.getWriter().print("Hello from Java!\n");
+		   
+		   String action = req.getServletPath();
+		   
+		   switch (action){
+		   case "/api":
+			   resp.getWriter().print("in Api!\n");
+			   break;
+		   
+		   default:
+			   resp.getWriter().print("Hello from Java!\n");
+			   break;
+		   
+		   }
+		   
+		   
+		   
+		   
+	        
 	    }
 
 	    public static void main(String[] args) throws Exception{
