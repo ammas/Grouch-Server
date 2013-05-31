@@ -10,12 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Council")
 public class Council {
 
 	@Id
 	private final String id;
+	@SuppressWarnings("unused")
 	private final String name;
 
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -29,8 +32,19 @@ public class Council {
 		this.recyclingMaterials = new ArrayList<Material>();
 	}
 
+	@SuppressWarnings("unused")
 	private Council() {
 		this(UUID.randomUUID(), null);
 	}
+
+	public boolean recyclesMaterial(String materialId) {
+		for (Material m : recyclingMaterials) {
+			if (m.getId().equals(materialId))
+				return true;
+		}
+		return false;
+	}
+	
+	
 
 }
